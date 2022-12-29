@@ -1,10 +1,10 @@
-raaio = 8;
-curvinhaaDocabo = 4;
-curvinhaaDaaColher = 5;
-espessuraa =  1.3;
-larguraDaColher = 3;
-larguraDoEixo = 25;
-comprimentoDaaColher = 49;
+raaio = 3;
+curvinhaaDocabo = 1.5;
+curvinhaaDaaColher = 2;
+espessuraa =  0.4;
+larguraDaColher = 2;
+larguraDoEixo = 5;
+comprimentoDaaColher = 6;
 quaalidaade = 100;
 
 //CaaLCULOS
