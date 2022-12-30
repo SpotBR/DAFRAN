@@ -1,7 +1,7 @@
 include <colher de recorte.scad>
 /*["Medidas"]*/
 quantidadeDeColheres = 4; //[0:20]
-quantidadeDeDentes = 6;//[1:20]
+quantidadeDeDentes = 7;//[1:20]
 anguloDoDente = 20;//[0:45]
 larguraDaCorreia = 7; //[15:100]
 espessuraDaCorreia = 5; //[1:100]

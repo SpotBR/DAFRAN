@@ -19,4 +19,4 @@ module colheresComCorreiasDentes() {
 //dentes();
 //correiaComDentes();
 //colheresComCorreias();
-//colheresComCorreiasDentes();
+colheresComCorreiasDentes();

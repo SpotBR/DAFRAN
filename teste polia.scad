@@ -1,5 +1,6 @@
 include<correia com dentes e colher.scad>
 include<bend.scad>
+include<polia.scad>
 module esticada(){
     raio = comprimentoDaCorreia*2/(PI*2);
     
@@ -45,7 +46,8 @@ module enrolada(){
 //colheresComCorreiasDentes();
 //enrolada();   
 
-esticada();       
+esticada();
+translate([0,0,raio+espessuraDosDentes])rotate([10,0,0])translate([0,0,-raio])polia();
 //translate([0,0,medidaFinalDoLoopFor/(PI*2)*2]) enrolada();
         
     
