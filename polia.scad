@@ -1,12 +1,12 @@
 include <correia com dentes.scad>
 include <bend.scad>
 /*["Medidas"]*/
-dentesPolia = 10;
-raioDoEixoDaPolia = 2;
-raioDoEixoDaPoliaComRolamento = 1;
-raioDoRolamento = 3;
+dentesPolia = quantidadeDeDentes * 2-3;
+raioDoEixoDaPolia = 1 / 3;
+raioDoEixoDaPoliaComRolamento = 1 / 3;
+raioDoRolamento = 1;
 cumprimentoPolia = (espacoDosDentes + fundoDoDente) * dentesPolia;
-raio = (cumprimentoPolia / (PI * 2));
+raio = ((comprimentoDaCorreia-(fundoDoDente*3+oposto*3)) * 2 /(PI * 2));
 escala = 90;
 module dentesPolia(quantidadeDeDentes = 10) {
     //DENTES
@@ -26,7 +26,7 @@ module polia(eixo,rolamento){
         }
     translate([-larguraDaCorreia/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia * 3, raioDoEixoDaPolia,raioDoEixoDaPolia, $fn = 100);    
 }  
-        cylindric_bend([larguraDaCorreia*2, cumprimentoPolia, espessuraDosDentes], raio, 400)
+        cylindric_bend([larguraDaCorreia * 2, cumprimentoPolia, espessuraDosDentes], raio, 400)
     rotate([0, 180, 0]) translate([-larguraDaCorreia/2, 0, -espessuraDaCorreia / 2 - espessuraDosDentes]) rotate([0, -90, 90]) {
         dentesPolia(dentesPolia);
     }
@@ -42,8 +42,8 @@ if(rolamento){
         }
     translate([-larguraDaCorreia/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia * 3, raioDoEixoDaPoliaComRolamento,raioDoEixoDaPoliaComRolamento, $fn = 100);
       
-    translate([-larguraDaCorreia/1.5, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);
-      translate([larguraDaCorreia/1.5, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);  
+    translate([-larguraDaCorreia/2-(larguraDaCorreia/10)/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);
+      translate([larguraDaCorreia/2+(larguraDaCorreia/10)/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);  
 }  
         cylindric_bend([larguraDaCorreia*2, cumprimentoPolia, espessuraDosDentes], raio, 400)
     rotate([0, 180, 0]) translate([-larguraDaCorreia/2, 0, -espessuraDaCorreia / 2 - espessuraDosDentes]) rotate([0, -90, 90]) {
@@ -52,4 +52,5 @@ if(rolamento){
 }
 }
 }
+//rotate([20,0,0])translate([0,0,-raio])polia(eixo = true,rolamento=false);
 rotate([20,0,0])translate([0,0,-raio])polia(eixo = false,rolamento=true);

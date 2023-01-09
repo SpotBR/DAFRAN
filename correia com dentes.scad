@@ -1,14 +1,14 @@
 include <colher de recorte.scad>
 /*["Medidas"]*/
-quantidadeDeColheres = 4; //[0:20]
-quantidadeDeDentes = 7;//[1:20]
-anguloDoDente = 20;//[0:45]
-larguraDaCorreia = 7; //[15:100]
-espessuraDaCorreia = 5; //[1:100]
-espessuraDosDentes = 2;//[1:50]
-arredondar = 1; //[0.1:5]
+quantidadeDeColheres = 1; //[0:20]
+quantidadeDeDentes = 8; //[1:20]
+anguloDoDente = 10; //[0:45]
+larguraDaCorreia = 2; //[15:100]
+espessuraDaCorreia = 2 * raaio * 0.95; //[1:100]
+espessuraDosDentes = 0.5; //[1:50]
+arredondar = 0.99; //[0.1:5]
 qualidade = 30; //[30:100] 
-espacoEntreAsColheres = 1;//[1:100]
+espacoEntreAsColheres = 0.1;//[1:100]
 escala = 90;
 
 //CALCULOS
@@ -36,27 +36,35 @@ module dente(a,b){
 }
 module dentes(){
     //DENTES
-    for(j = [0: quantidadeDeDentes - 1]) {
+    for(j = [0: quantidadeDeDentes -1]) {
         translate([0, 0, -j * espacoDosDentes - fundoDoDente * j])
         dente(a=true);
     }
 }
-module correiaComDentes() {
+module correiaComDentes() {    
     color("dimgray"){
     difference() {
         minkowski() {
-            translate([0, 0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2])cube([espessuraDaCorreia , larguraDaCorreia - arredondar * 2, comprimentoDaCorreia + espacoEntreAsColheres], true);
+            translate([0, 0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2])cube([espessuraDaCorreia , larguraDaCorreia-arredondar*2,comprimentoDaCorreia + espacoEntreAsColheres], true);
             sphere(arredondar, $fn = qualidade);
         }
-        translate([ espessuraDaCorreia-arredondar,0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2]) cube([espessuraDaCorreia - arredondar * 2, larguraDaCorreia + arredondar * 2, comprimentoDaCorreia + espacoEntreAsColheres+arredondar], true);
-        translate([ -espessuraDaCorreia+arredondar,0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2]) cube([espessuraDaCorreia - arredondar * 2, larguraDaCorreia + arredondar * 2, comprimentoDaCorreia + espacoEntreAsColheres+arredondar], true);
-        translate([(espessuraDaCorreia/2)- ((raaio / 100) * escala)  , larguraDaCorreia, -raaio - arredondar/2 - espacoEntreAsColheres]) rotate([90, 0, 0]) cylinder(larguraDaCorreia * 2, raaio / 5, raaio / 5, $fn = quaalidaade);
-        translate([0, 0, -((raaio + c) + s * 2 - aalturaa * 2 + comprimentoDaaColher * ((1 / 100) * escala)) - espacoEntreAsColheres]) cube([2 * espessuraDaCorreia, larguraDaCorreia * 2, arredondar * 2], true);
+        
+        translate([ espessuraDaCorreia ,0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2]) cube([espessuraDaCorreia, larguraDaCorreia + arredondar * 2, comprimentoDaCorreia + espacoEntreAsColheres + arredondar * 2], true);
+        
+        translate([ -espessuraDaCorreia,0, -comprimentoDaCorreia / 2 - espacoEntreAsColheres / 2]) cube([espessuraDaCorreia, larguraDaCorreia + arredondar * 2, comprimentoDaCorreia + espacoEntreAsColheres + arredondar * 2], true);
+        
+//        translate([(espessuraDaCorreia / 2)- ((raaio / 100) * escala)  , larguraDaCorreia, -raaio - espacoEntreAsColheres]) rotate([90, 0, 0]) cylinder(larguraDaCorreia * 2, raaio / 5, raaio / 5, $fn = quaalidaade);
+        translate([espessuraDaCorreia/2-(raaio / 100) * escala, larguraDaCorreia, -espacoEntreAsColheres-(raaio / 100) * escala]) rotate([90, 0, 0])  cylinder(larguraDaCorreia * 2, raaio / 5, raaio / 5, $fn = quaalidaade);
+        
+        translate([0, 0,-fundoDoDente/2-arredondar/2-(oposto*2+fundoDoDente)*quantidadeDeDentes-fundoDoDente*quantidadeDeDentes]) cube([2 * espessuraDaCorreia, larguraDaCorreia * 2, fundoDoDente+arredondar], true);
+        
         translate([0, 0, arredondar]) cube([2 * espessuraDaCorreia, larguraDaCorreia * 2, arredondar * 2], true);
-        translate([0, 0, -raaio - espacoEntreAsColheres]) rotate([0, 2 + 90, 0]) translate([-(raaio / 100) * escala, 0, 0]) recorte();
+        
+        translate([0, 0,  - espacoEntreAsColheres]) rotate([0, 3.5 + 90, 0]) translate([0, 0, 0.1]) recorte();
     }
     dentes();
 }
 }
 //dentes();
+//rotate([0,90,0])colher();
 //correiaComDentes();
