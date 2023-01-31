@@ -1,12 +1,11 @@
 include <correia com dentes.scad>
 include <bend.scad>
+include <eixo da polia.scad>
+include <encaixe do rolamento.scad>
 /*["Medidas"]*/
-dentesPolia = quantidadeDeDentes * 2-3;
-raioDoEixoDaPolia = 1 / 3;
-raioDoEixoDaPoliaComRolamento = 1 / 3;
-raioDoRolamento = 1;
+dentesPolia = quantidadeDeDentes * 2 - retirarDentesPolia;
 cumprimentoPolia = (espacoDosDentes + fundoDoDente) * dentesPolia;
-raio = ((comprimentoDaCorreia-(fundoDoDente*3+oposto*3)) * 2 /(PI * 2));
+raio = ((comprimentoDaCorreia - (fundoDoDente * retirarDentesPolia + oposto * retirarDentesPolia)) * 2 /(PI * 2));
 escala = 90;
 module dentesPolia(quantidadeDeDentes = 10) {
     //DENTES
@@ -16,41 +15,53 @@ module dentesPolia(quantidadeDeDentes = 10) {
     }
 }
 module polia(eixo,rolamento){
+    
     if(eixo){
-    color("silver") {
-    difference(){
         union(){
-        translate([0, 0, raio]) rotate([0, 270, 0]) cylinder(larguraDaCorreia /10, raio+espessuraDosDentes/2, raio+espessuraDosDentes/2, $fn = 100);
-    translate([larguraDaCorreia, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia /10, raio+espessuraDosDentes/2, raio+espessuraDosDentes/2, $fn = 100);
+    translate([0,0,-raio]){
+    color("silver") {
+        difference(){
+        union(){
+        translate([0, 0, raio]) rotate([0, 270, 0]) cylinder(larguraDaCorreia / 10, raio+espessuraDaCorreia / 2, raio+espessuraDaCorreia / 2, $fn = 100);
+    translate([larguraDaCorreia, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia /10, raio+espessuraDaCorreia / 2, raio+espessuraDaCorreia / 2, $fn = 100);
     translate([0, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raio - espessuraDosDentes, raio - espessuraDosDentes, $fn = 100);
         }
-    translate([-larguraDaCorreia/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia * 3, raioDoEixoDaPolia,raioDoEixoDaPolia, $fn = 100);    
-}  
+       translate([0,0,raio])rotate([0,90,0])eixoPolia(cima = true,baixo = false);
+    } 
         cylindric_bend([larguraDaCorreia * 2, cumprimentoPolia, espessuraDosDentes], raio, 400)
     rotate([0, 180, 0]) translate([-larguraDaCorreia/2, 0, -espessuraDaCorreia / 2 - espessuraDosDentes]) rotate([0, -90, 90]) {
         dentesPolia(dentesPolia);
     }
 }
 }
+//EIXO DA POLIA
+rotate([0,90,0])eixoPolia(cima = true,baixo = false);
+translate([larguraDaCorreia*2+(profundidadeParaRolamento/2),0,0])rotate([0,-90,0])encaixeRolamento(cima = true,baixo = false,recorteDoRecipiente=false);
+}
+}
 if(rolamento){
+    
     color("silver") {
+     translate([0,0,-raio]){
     difference(){
         union(){
-        translate([0, 0, raio]) rotate([0, 270, 0]) cylinder(larguraDaCorreia /10, raio+espessuraDosDentes/2, raio+espessuraDosDentes/2, $fn = 100);
-    translate([larguraDaCorreia, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia /10, raio+espessuraDosDentes/2, raio+espessuraDosDentes/2, $fn = 100);
+        translate([-profundidadeParaRolamento, 0, raio]) rotate([0, 90, 0])encaixeRolamento(cima = false,baixo = true,recorteDoRecipiente = false);
+    
+    translate([larguraDaCorreia+profundidadeParaRolamento, 0, raio]) rotate([0, -90, 0])encaixeRolamento(cima = false,baixo = true);
+    
     translate([0, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raio - espessuraDosDentes, raio - espessuraDosDentes, $fn = 100);
         }
     translate([-larguraDaCorreia/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia * 3, raioDoEixoDaPoliaComRolamento,raioDoEixoDaPoliaComRolamento, $fn = 100);
-      
-    translate([-(larguraDaCorreia/2)-(larguraDaCorreia/10)/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);
-      translate([(larguraDaCorreia/2)+(larguraDaCorreia/10)/2, 0, raio]) rotate([0, 90, 0]) cylinder(larguraDaCorreia , raioDoRolamento,raioDoRolamento, $fn = 100);  
+        
 }  
-        cylindric_bend([larguraDaCorreia*2, cumprimentoPolia, espessuraDosDentes], raio, 400)
+    cylindric_bend([larguraDaCorreia*2, cumprimentoPolia, espessuraDosDentes], raio, 400)
     rotate([0, 180, 0]) translate([-larguraDaCorreia/2, 0, -espessuraDaCorreia / 2 - espessuraDosDentes]) rotate([0, -90, 90]) {
         dentesPolia(dentesPolia);
     }
 }
 }
+translate([(larguraDaCorreia/2)-(comprimentoDoEixoDeBaixo/2),0,0])rotate([0,90,0])eixoPolia(cima = false,baixo = true);
 }
-//rotate([20,0,0])translate([0,0,-raio])polia(eixo = true,rolamento=false);
-//rotate([20,0,0])translate([0,0,-raio])polia(eixo = false,rolamento=true);
+}
+ //translate([0,20,0])polia(eixo = true,rolamento=false);
+//polia(eixo = false,rolamento=true);

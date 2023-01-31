@@ -21,7 +21,6 @@ ss = pow((s + 1) / 2, 2);
 hhh = sqrt(pow(raaio + c, 2) + pow(bb - gg,2));
 aag12 = atan((bb - gg) / (raaio + c));
 ggg = (hhh * sin(90) / sin( aag12)) /2;
-//curvaa3 = 2 * sqrt((raaio+c ) * (raaio)- pow(curvinhaaDocabo + espessuraa,2));
  //MODULOS
 //module buraco(){
 //     hull(){

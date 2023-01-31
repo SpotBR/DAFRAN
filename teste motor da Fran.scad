@@ -1,9 +1,8 @@
 %import("projeto_corrigido_large_print_size.stl");
 include <teste polia.scad>
-//include <colher.scad>
-include<correia com dentes e colher.scad>
-
-//translate([47,-47,60])rotate([-90,0,-135]) esticada();
-//translate([116.5,-116.5,260])rotate([180,0,045*3]) colher();
-//translate([105,-105,260])rotate([0,0,-45]) colheresComCorreiasDentes();
-rotate([0,0,45])translate([0,-170,160])rotate([-90,0,0])esticada();
+//rotate([ 0, 0, 45])translate([ 0, -176, 51])rotate([ -90, 0, 0])esticada();
+////rotate([ 0, 0, 45])translate([ -larguraDaCorreia/2, -182, 160])polia(eixo = true,rolamento=false);
+////rotate([ 0, 0, 45])tra nslate([ -larguraDaCorreia/2, -178, 90])polia(eixo = false,rolamento=true);
+//rotate([ 0, 0, 45])translate([ 0, -140, 312])sphere(17,$fn=50);
+//rotate([ 0, 0, 45])translate([ 0, -140, 275])sphere(17,$fn=50);
+//rotate([ 0, 0, 45])translate([ 0, -140, 227])sphere(17,$fn=50);

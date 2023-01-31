@@ -1,10 +1,10 @@
-raaio = 0.7;
-curvinhaaDocabo = 0.55 ;
-curvinhaaDaaColher = 1;
-espessuraa =  0.06;
-larguraDaColher = 1.3;
-larguraDoEixo = 1.5;
-comprimentoDaaColher = 3;
+raaio = 3;
+curvinhaaDocabo = sqrt(3);
+curvinhaaDaaColher = 3;
+espessuraa =  1 / sqrt(3);
+larguraDaColher = 5;
+larguraDoEixo = 13;
+comprimentoDaaColher = 1;
 quaalidaade = 100;
 
 //CaaLCULOS
@@ -29,9 +29,7 @@ ss = pow((s + 1) / 2, 2);
 hhh = sqrt(pow(raaio + c, 2) + pow(bb - gg,2));
 aag12 = atan((bb - gg) / (raaio + c));
 ggg = (hhh * sin(90) / sin( aag12)) /1.5;
-echo(comprimentoDaaColher+(raaio + c) + s - aalturaa+s);
-//translate([comprimentoDaaColher+(raaio + c) + s - aalturaa+s,0,-raaio])cube(1,true);
-//curvaa3 = 2 * sqrt((raaio+c ) * (raaio)- pow(curvinhaaDocabo + espessuraa,2));
+
  //MODULOS
  module buraco(){
      hull(){
