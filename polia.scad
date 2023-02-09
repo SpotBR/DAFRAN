@@ -39,12 +39,10 @@ module polia(eixo,rolamento){
 //EIXO DA POLIA
 rotate([0,90,0])eixoPolia(cima = true,baixo = false);
 
-translate([larguraDaCorreia*2+(profundidadeParaRolamento)+esfera*1.8,0,0])rotate([0,-90,0])encaixeRolamento(cima = true,baixo = false,recorteDoRecipiente=false);
+translate([larguraDaCorreia*2+(profundidadeParaRolamento/2.6),0,0])rotate([0,90,0])encaixeRolamento(cima = true,baixo = false,recorteDoRecipiente=false);
 }
 }
 if(rolamento){
-    translate([-(r - esfera),0,0])rotate([0,0,90])rolamento();
-    translate([larguraDaCorreia+(r - esfera),0,0])rotate([0,0,90])rolamento();
     
     color("silver") {
      translate([0,0,-raio]){
@@ -64,8 +62,9 @@ if(rolamento){
         dentesPolia(dentesPolia);
 }
 }
-translate([( larguraDaCorreia / 2) - (comprimentoDoEixoDeBaixo / 2),0,0])rotate([ 0, 90, 0])eixoPolia(cima = false, baixo = true);
+translate([( larguraDaCorreia / 2) - (comprimentoDoEixoDeBaixo / 2),0,0])
+rotate([ 0, 90, 0])eixoPolia(cima = false, baixo = true);
 }
 }
 //translate([0,0,0])polia(eixo = true,rolamento=false);
-polia(eixo = false,rolamento=true);
+//polia(eixo = false,rolamento=true);

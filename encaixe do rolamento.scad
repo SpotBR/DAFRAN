@@ -1,10 +1,7 @@
 include <eixo da polia.scad>
-include <rolamento.scad>
 module encaixeRolamento(baixo,cima,recorteDoRecipiente){
     
         if(cima){
-            translate([0,0,(r - esfera)-espessuraDoAnel])
-            rotate([90,0,0])rolamento();
             color("green"){
     difference(){
         cylinder( profundidadeParaRolamento+espessuraDoEncaixeRolamento,raioDoRolamento,raioDoRolamento,$fn=100);
@@ -25,7 +22,7 @@ module encaixeRolamento(baixo,cima,recorteDoRecipiente){
     }
 }
     if(recorteDoRecipiente)
-        cylinder( profundidadeParaRolamento *4,raioDoRolamento,raioDoRolamento,$fn=100);
+        cylinder( profundidadeParaRolamento *2.715,raioDoRolamento+espessuraDoEncaixeRolamento*2,raioDoRolamento+espessuraDoEncaixeRolamento*2,$fn=100);
         
 }
 //encaixeRolamento(cima = false,baixo = false, recorteDoRecipiente = true);

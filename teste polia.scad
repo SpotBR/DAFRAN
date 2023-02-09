@@ -36,15 +36,15 @@ translate([0,-comprimentoDaCorreia*quantidadeDeColheres,-espessuraDaCorreia/2+(r
 
     translate([-larguraDaCorreia/2,-comprimentoDaCorreia * quantidadeDeColheres,raio+espessuraDaCorreia/2])polia(eixo=true);
 }
-//module enrolada(){
-//    raio = medidaFinalDoLoopFor/(PI*2);
-//    cylindric_bend([larguraDaCorreia, medidaFinalDoLoopFor,  espessuraDaCorreia+espessuraDosDentes],raio,100)
-//    translate([larguraDaCorreia/2, 0, espessuraDaCorreia/2]) rotate([0,-90,90]){
-//                for(i = [0: quantidadeDeColheres - 1]) {
-//                    translate([0, 0, -(comprimentoDaCorreia - arredondar + espacoEntreAsColheres) * i]) colheresComCorreiasDentes();
-//                }
-//    }
-//}
+module enrolada(){
+    raio = medidaFinalDoLoopFor/(PI*2);
+    cylindric_bend([larguraDaCorreia, medidaFinalDoLoopFor,  espessuraDaCorreia+espessuraDosDentes],raio,100)
+    translate([larguraDaCorreia/2, 0, espessuraDaCorreia/2]) rotate([0,-90,90]){
+                for(i = [0: quantidadeDeColheres - 1]) {
+                    translate([0, 0, -(comprimentoDaCorreia - arredondar + espacoEntreAsColheres) * i]) colheresComCorreiasDentes();
+                }
+    }
+}
 //colheresComCorreiasDentes();
 //enrolada();   
 

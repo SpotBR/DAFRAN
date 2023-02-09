@@ -1,5 +1,5 @@
-esfera = 2;
-vetor = 8;
+esfera = 1;
+vetor = 16;
 grau = 360/vetor;
 espessuraDoAnel = (esfera/2)/2;
 r = esfera*sin(90)/sin(grau/2);
