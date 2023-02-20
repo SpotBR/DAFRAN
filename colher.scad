@@ -2,7 +2,7 @@ raaio = 3;
 curvinhaaDocabo = sqrt(3);
 curvinhaaDaaColher = 3;
 espessuraa =  1 / sqrt(3);
-larguraDaColher = 5;
+larguraDaColher = 4.5;
 larguraDoEixo = 13;
 comprimentoDaaColher = 1;
 quaalidaade = 100;
@@ -33,8 +33,8 @@ ggg = (hhh * sin(90) / sin( aag12)) /1.5;
  //MODULOS
  module buraco(){
      hull(){
-         translate([(raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/1.5])sphere(ss,$fn=quaalidaade);
-         translate([comprimentoDaaColher + (raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/1.5])sphere(ss,$fn=quaalidaade);
+         translate([(raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/2.8])sphere(ss,$fn=quaalidaade);
+         translate([comprimentoDaaColher + (raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/2.8])sphere(ss,$fn=quaalidaade);
      }
  }
 
@@ -89,7 +89,7 @@ hull(){
         translate([comprimentoDaaColher+(raaio + c) - aalturaa,0,-raaio + ((bb - gg/2)-gg/2)/2]) cube([s * 2,s * 2,((bb - gg/2)-gg/2)],true);
     }
 }
-//buraco();
+buraco();
 }
 }
-//colher();
+ //colher();

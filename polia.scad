@@ -66,5 +66,5 @@ translate([( larguraDaCorreia / 2) - (comprimentoDoEixoDeBaixo / 2),0,0])
 rotate([ 0, 90, 0])eixoPolia(cima = false, baixo = true);
 }
 }
-//translate([0,0,0])polia(eixo = true,rolamento=false);
+ //translate([0,0,0])polia(eixo = true,rolamento=false);
 //polia(eixo = false,rolamento=true);

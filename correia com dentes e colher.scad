@@ -4,7 +4,7 @@ abrirColher = 90; //[0:90]
 //MODULOS 
 module colheresComCorreiasDentes(abre,fecha) {
     if(abre){
-    translate([-espessuraDaCorreia / 2,0,0])correiaComDentes(reta=true,curva=false);
+    translate([-espessuraDaCorreia / 2,0,0])correiaComDentes();
         color([0.05, 0.43, 0.84])
         difference() {
           translate([-(raaio / 100) * escala,0,-espacoEntreAsColheres-(raaio / 100) * escala])
@@ -21,7 +21,7 @@ module colheresComCorreiasDentes(abre,fecha) {
             rotate([90, 0, 0]) cylinder(larguraDaCorreia, raaio / 5, raaio / 5, $fn = quaalidaade);
     }
     if(fecha){
-    translate([-espessuraDaCorreia / 2,0,0])correiaComDentes(reta=true,curva=false);
+    translate([-espessuraDaCorreia / 2,0,0])correiaComDentes();
         color([0.05, 0.43, 0.84])
         difference() {
           translate([-(raaio / 100) * escala,0,-espacoEntreAsColheres-(raaio / 100) * escala])
