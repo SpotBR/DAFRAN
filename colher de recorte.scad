@@ -22,19 +22,29 @@ hhh = sqrt(pow(raaio + c, 2) + pow(bb - gg,2));
 aag12 = atan((bb - gg) / (raaio + c));
 ggg = (hhh * sin(90) / sin( aag12)) /2;
  //MODULOS
-//module buraco(){
-//     hull(){
-//         translate([(raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/1.5])sphere(ss,$fn=quaalidaade);
-//         translate([comprimentoDaaColher + (raaio + c) + s - aalturaa,0,ss-raaio+(bb-gg)/1.5])sphere(ss,$fn=quaalidaade);
-//     }
-// }
 module canto(){
         translate([ raaio/2, 0, -raaio/2]) cube([raaio,larguraDoEixo, raaio ], true);
 }
 //REBARBAS
 module recorte(){
+    difference(){
+    union(){
 translate([ raaio + c,(larguraDoEixo*5)/2,-raaio-ggg+((bb - gg))])rotate([90,0,0])cylinder(larguraDoEixo*5,ggg,ggg,$fn = quaalidaade);
 canto();
-colher();
+colher(comFuro=false,semFuro=true);
+    }
+    buraco();
+}
+         union(){
+intersection(){   
+    quarter();
+    translate([0,-(larguraDoEixo+curvinhaaDaaColher)/2,0])eixo3();
+}
+intersection(){
+    translate([0,0,-raaio * 2 + ((curvinhaaDocabo * 2) + (espessuraa * 2))])rotate([180,0,0])quarter();
+    translate([0,(larguraDoEixo+curvinhaaDaaColher)/2,0])eixo3();
+}
+eixo2();
+}
 }
 //recorte();

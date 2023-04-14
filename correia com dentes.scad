@@ -1,7 +1,7 @@
 include <colher de recorte.scad>
 /*["Medidas"]*/
 phi = (1+sqrt(5))/2;
-quantidadeDeColheres = 1; //[0:20]
+quantidadeDeColheres = 2; //[0:20]
 quantidadeDeDentes = 30; //[1:30]
 retirarDentesPolia = 43;//[1:30]
 anguloDoDente = 10; //[0:45]
@@ -15,16 +15,15 @@ escala = 90;
 
 //CALCULOS
 comprimentoDaCorreia = ((raaio + c) + s * 2 - aalturaa * 2 + comprimentoDaaColher * ((1 / 100) * escala));
-
 medidaFinalDoLoopFor = comprimentoDaCorreia * quantidadeDeColheres;
 oposto = espessuraDosDentes * sin(anguloDoDente) / sin(90 - anguloDoDente);
 espacoDosDentes = ((comprimentoDaCorreia / 2) + oposto * quantidadeDeDentes) / quantidadeDeDentes;
 fundoDoDente = espacoDosDentes - oposto * 2;
 somatoriaDoDente = espacoDosDentes * quantidadeDeDentes + quantidadeDeDentes * fundoDoDente;
-//comprimentoDaCorreia1 = ((((comprimentoDaCorreia - (fundoDoDente * retirarDentesPolia + oposto * retirarDentesPolia)) * 2 /(PI * 2)))+espessuraDaCorreia)*PI;
 comprimentoDaCorreia1 = (((comprimentoDaCorreia - (fundoDoDente * retirarDentesPolia + oposto * retirarDentesPolia)) * 2 /(PI * 2))+espessuraDaCorreia) * PI;
 espacoDosDentes1 = ((comprimentoDaCorreia1 / 2) + oposto * quantidadeDeDentes) / quantidadeDeDentes;
 fundoDoDente1 = espacoDosDentes1 - oposto * 2;
+
 //MODULOS
 module dente(a,b){
     if(a)
@@ -90,9 +89,14 @@ module correiaCortada(curvaPolia,retaPolia){
         translate([0,0,-comprimentoDaCorreia1-comprimentoDaCorreia1/2])cube([espessuraDaCorreia*2 ,larguraDaCorreia*1.2,comprimentoDaCorreia1],true);
     }
 }
+
+module correias(){
+    for(j=[0:quantidadeDeColheres]){
+    translate([0,0,-comprimentoDaCorreia*j])correiaComDentes();
+}
+}
 //translate([0,-30 ,0])correiaCortada(curvaPolia = true,retaPolia = false);
 //translate([0,-30 ,0])correiaCortada(curvaPolia = false,retaPolia = true);
 //dentes();
 //rotate([0,90,0])colher();
-
-//translate([0,30,0])correiaComDentes();
+//translate([0,0,0])correiaComDentes();
